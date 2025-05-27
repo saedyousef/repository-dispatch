@@ -1,4 +1,4 @@
-name: "Repository Dispatch"
+name: "Cross-Repo Dispatch"
 description: "Trigger a repository_dispatch event to another GitHub repository"
 
 inputs:
