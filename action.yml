@@ -1,0 +1,34 @@
+name: "Repository Dispatch"
+description: "Trigger a repository_dispatch event to another GitHub repository"
+
+inputs:
+  token:
+    description: "GitHub Personal Access Token with repo access"
+    required: true
+  owner:
+    description: "Target repository owner"
+    required: true
+  repo:
+    description: "Target repository name"
+    required: true
+  event_type:
+    description: "Event type to dispatch (must match target workflow)"
+    required: true
+  client_payload:
+    description: "Optional JSON payload to send"
+    required: false
+    default: '{}'
+
+runs:
+  using: "composite"
+  steps:
+    - name: Send repository_dispatch event
+      shell: bash
+      run: |
+        chmod +x ${{ github.action_path }}/repository_dispatch.sh
+        ${{ github.action_path }}/repository_dispatch.sh \
+          "${{ inputs.token }}" \
+          "${{ inputs.owner }}" \
+          "${{ inputs.repo }}" \
+          "${{ inputs.event_type }}" \
+          '${{ inputs.client_payload }}'
