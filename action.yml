@@ -32,3 +32,6 @@ runs:
           "${{ inputs.repo }}" \
           "${{ inputs.event_type }}" \
           '${{ inputs.client_payload }}'
+branding:
+  icon: send
+  color: gray-dark
